@@ -9,11 +9,12 @@ Vagrant.configure("2") do |config|
     config.vm.provider "virtualbox" do |v|
 	  v.memory = 2048
 	  v.cpus = 2
+	  v.name = "rbayliss"
 	end
-    #config.vm.synced_folder "www", "/var/www", :nfs => { :mount_options => ["dmode=775", "fmode=664"] }
-    #config.vm.synced_folder ".", "/vagrant", :nfs => { :mount_options => ["dmode=775", "fmode=664"] }
-    config.vm.synced_folder "www", "/var/www", owner: "www-data", group: "vagrant", mount_options: ["dmode=775,fmode=664"]
-    config.vm.synced_folder ".", "/home/vagrant/host", owner: "vagrant", group: "vagrant", mount_options: ["dmode=775,fmode=664"]
+    config.vm.synced_folder "www", "/var/www", :nfs => { :mount_options => ["dmode=775", "fmode=664"] }
+    config.vm.synced_folder ".", "/home/vagrant/host", :nfs => { :mount_options => ["dmode=775", "fmode=664"] }
+    #config.vm.synced_folder "www", "/var/www", owner: "www-data", group: "vagrant", mount_options: ["dmode=775,fmode=664"]
+    #config.vm.synced_folder ".", "/home/vagrant/host", owner: "vagrant", group: "vagrant", mount_options: ["dmode=775,fmode=664"]
     config.vm.provision "shell", privileged: true, inline: <<-SHELL
 cat /home/vagrant/.profile >> /home/vagrant/.bash_profile    
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7638D0442B90D010 && \
