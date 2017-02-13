@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
     config.vm.provider "virtualbox" do |v|
 	  v.memory = 2048
 	  v.cpus = 2
-	  v.name = "rbayliss"
+	  v.name = "spytecinc"
 	end
     config.vm.synced_folder "www", "/var/www", :nfs => { :mount_options => ["dmode=775", "fmode=664"] }
     config.vm.synced_folder ".", "/home/vagrant/host", :nfs => { :mount_options => ["dmode=775", "fmode=664"] }
